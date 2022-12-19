@@ -4,8 +4,6 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import User
 
 
-# Create your models here.
-#class User(AbstractBaseUser,PermissionMixin):
 class Hotel(models.Model):
     
     name=models.CharField(max_length=30)
@@ -35,6 +33,8 @@ class Booking(models.Model):
     is_available=models.BooleanField()
     room=models.ForeignKey(Room,on_delete=models.CASCADE)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
+
+
     
 
 class Review(models.Model):
