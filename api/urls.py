@@ -1,7 +1,9 @@
 from django.urls import path
-from . import views
+from .views.booking import BookingList
+from .views.room import RoomList
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-   path('sth/',views.something),
-   path('hotels/',views.hotels)
+   path('bookings/', BookingList.as_view()),
+   path('rooms/',RoomList.as_view())
 ]
