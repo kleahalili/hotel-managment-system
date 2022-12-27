@@ -12,8 +12,8 @@ class Review(models.Model):
     comment=models.CharField(max_length=200)
     stars=models.IntegerField(choices = CHOICES)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    hotel=models.ForeignKey(Hotel,on_delete=models.CASCADE)
+    hotel=models.ForeignKey(Hotel,related_name="reviews",on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.name
+        return f"Review from {self.user.username} for hotel {self.hotel.name}"
     

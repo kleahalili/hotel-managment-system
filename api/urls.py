@@ -1,9 +1,11 @@
 from django.urls import path
-from .views.booking import BookingList
-from .views.room import RoomList
+from .views import BookingList, HotelList, RoomList, ReviewList, ReviewDetails
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-   path('bookings/', BookingList.as_view()),
-   path('rooms/',RoomList.as_view())
+   path('bookings/', BookingList.as_view(),name="bookings"),
+   path('rooms/',RoomList.as_view(),name="rooms"),
+   path('hotels/',HotelList.as_view(),name="hotels"),
+   path('reviews/',ReviewList.as_view(),name="reviews"),
+   path('reviews/<int:pk>/', ReviewDetails.as_view()),
 ]
