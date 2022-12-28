@@ -1,4 +1,4 @@
 from .hotel import HotelList
 from .room import RoomList
-from .booking import BookingList
+from .booking import BookingList,BookingDetails
 from .review import ReviewList, ReviewDetails
