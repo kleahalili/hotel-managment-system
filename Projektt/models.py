@@ -12,4 +12,4 @@ class Items(models.Model):
     itemLocation=models.ForeignKey(Location,on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.itemName 
+        return self.itemName
