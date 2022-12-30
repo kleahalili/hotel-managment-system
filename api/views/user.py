@@ -2,8 +2,7 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from http import 
-class ExampleView(APIView):
+class UserView(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
@@ -12,4 +11,4 @@ class ExampleView(APIView):
             'user': str(request.user),  
             'auth': str(request.auth), 
         }
-        return Response(content,status=status.HTTP_401_UNAUTHORIZED)
+        return Response(content)

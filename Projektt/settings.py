@@ -27,12 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# REST_FRAMEWORK={
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAUTHENTICATION',
-#     )
-# }
-
 
 # Application definition
 
@@ -43,10 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api.apps.ApiConfig',
     'rest_framework',
-    'rest_framework.authtoken',
     
+    'api.apps.ApiConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,4 +125,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL='models.User'
+# AUTH_USER_MODEL='api.User'
