@@ -23,10 +23,7 @@ class Room(models.Model):
     
     def is_available(self, check_in, check_out):
         for booking in self.bookings.all():
-            if (booking.check_out >= check_in and booking.check_out <= check_out) or \
-                (booking.check_in >= check_in and booking.check_in <= check_out) or \
-                (booking.check_in >= check_in and booking.check_out <= check_out) or \
-                (booking.check_in <= check_in and booking.check_out >= check_out):
+            if booking.check_in < check_out and booking.check_out > check_in:
                 return False
         return True
     
