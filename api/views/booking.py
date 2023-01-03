@@ -46,7 +46,7 @@ class BookingDetails(APIView):
         try:
             booking = Booking.objects.get(pk=pk)
         except Booking.DoesNotExist:            
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_404_NOT_FOUND)
         
         # Check if booking belongs to user
         if booking.user.id != request.user.id:

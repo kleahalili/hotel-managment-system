@@ -34,7 +34,7 @@ class ReviewDetails(APIView):
         try:
             review = Review.objects.get(pk=pk)
         except Review.DoesNotExist:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_404_NOT_FOUND)
         
         if review.user.id != request.user.id:
             return Response(status=status.HTTP_403_FORBIDDEN)

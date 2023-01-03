@@ -21,5 +21,14 @@ class Room(models.Model):
                 return False
         return True
     
+    def is_available(self, check_in, check_out):
+        for booking in self.bookings.all():
+            if (booking.check_out >= check_in and booking.check_out <= check_out) or \
+                (booking.check_in >= check_in and booking.check_in <= check_out) or \
+                (booking.check_in >= check_in and booking.check_out <= check_out) or \
+                (booking.check_in <= check_in and booking.check_out >= check_out):
+                return False
+        return True
+    
     class Meta:
         unique_together = (('hotel', 'number'))
