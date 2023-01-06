@@ -2,7 +2,6 @@ from django.db import models
 from ..models import Hotel
 from datetime import date
 
-
 class Room(models.Model):
     number=models.IntegerField(null=False)
     photos=models.FileField(upload_to ='uploads/% Y/% m/% d/',blank=True,null=True)
