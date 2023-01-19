@@ -4,6 +4,8 @@ from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.conf import settings
+import re
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
@@ -13,6 +15,8 @@ class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
+    
+  
     
     class Meta:
         model = User
@@ -29,6 +33,15 @@ class RegisterSerializer(serializers.ModelSerializer):
             {"password": "Password fields didn't match."})
         return attrs
     
+    def validate_username(self, username):
+        if not any(char.isdigit() for char in username):
+            raise serializers.ValidationError('Username must contain at least one number')
+        if re.search(r'[^a-zA-Z0-9_ .]', username):
+            raise serializers.ValidationError('Username must only include \"_\" and \".\"')
+        if len(username) < 8 or len(username) > 12:
+            raise serializers.ValidationError('Username must be between 8 and 12 characters long')
+        return username
+       
     def create(self, validated_data):
         user = User.objects.create(
         username=validated_data['username'],
@@ -42,7 +55,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         
         token = RefreshToken.for_user(user).access_token
         
-        verification_link = f"http://localhost:8000/api/verify/{token}"
+        verification_link = f"{settings.HOST_URL}/api/verify/{token}"
 
         send_mail(
             'Verify your email',

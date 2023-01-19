@@ -138,3 +138,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # AUTH_USER_MODEL='api.User'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+HOST_URL = "http://localhost:8000"
