@@ -37,7 +37,7 @@ class BookingDetails(APIView):
         serializer = BookingSerializer(booking)
 
         # Check if booking belongs to user
-        if booking.user.id != request.user.id:
+        if booking.user.id != request.user.id and not request.user.is_staff:
             return Response(status=status.HTTP_403_FORBIDDEN)
     
         return Response(serializer.data)
@@ -49,7 +49,7 @@ class BookingDetails(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
         
         # Check if booking belongs to user
-        if booking.user.id != request.user.id:
+        if booking.user.id != request.user.id and not request.user.is_staff:
             return Response(status=status.HTTP_403_FORBIDDEN)
         
         serializer = BookingSerializer(booking, data=request.data)
@@ -67,7 +67,7 @@ class BookingDetails(APIView):
             return Response(status=status.HTTP_204_NO_CONTENT)
         
         # Check if booking belongs to user
-        if booking.user.id != request.user.id:
+        if booking.user.id != request.user.id and not request.user.is_staff:
             return Response(status=status.HTTP_403_FORBIDDEN)
         
         booking.delete()

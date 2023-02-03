@@ -16,7 +16,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
     
-  
     
     class Meta:
         model = User
@@ -32,6 +31,10 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
             {"password": "Password fields didn't match."})
         return attrs
+    
+    # def validate_password(self, password):
+    #     if len(password) < 8:
+    #         raise serializers.ValidationError('Password must be at least 8 characters long')
     
     def validate_username(self, username):
         if not any(char.isdigit() for char in username):
