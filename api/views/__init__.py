@@ -5,3 +5,4 @@ from .review import ReviewList, ReviewDetails
 from .register import Register
 from .verifcation import VerifyEmail
 from .users import UserList, UserDetails
+from .phone import PhoneNumberList, PhoneNumberVerificationCreate, PhoneNumberVerificationVerify
