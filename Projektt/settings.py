@@ -151,3 +151,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 HOST_URL = "http://localhost:8000"
 
+
+TWILIO_ACCOUNT_SID="AC07295bd3e4982a931da02350bfae22cc"
+TWILIO_AUTH_TOKEN="320d606e4d71e372afc7f547a1a9f539"
+TWILIO_FROM_NUMBER="+13024598741"
